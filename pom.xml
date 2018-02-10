@@ -15,42 +15,38 @@
 
 		<dropwizard.version>1.2.3</dropwizard.version>
 		<prometheus.client>0.2.0</prometheus.client>
+		<metrics.version>4.0.2</metrics.version>
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/io.dropwizard/dropwizard-core -->
 		<dependency>
 			<groupId>io.dropwizard</groupId>
 			<artifactId>dropwizard-core</artifactId>
 			<version>${dropwizard.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.prometheus/simpleclient_dropwizard -->
 		<dependency>
 			<groupId>io.prometheus</groupId>
 			<artifactId>simpleclient_dropwizard</artifactId>
 			<version>${prometheus.client}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.prometheus/simpleclient_servlet -->
 		<dependency>
 			<groupId>io.prometheus</groupId>
 			<artifactId>simpleclient_servlet</artifactId>
 			<version>${prometheus.client}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.prometheus/simpleclient_hotspot -->
 		<dependency>
 			<groupId>io.prometheus</groupId>
 			<artifactId>simpleclient_hotspot</artifactId>
 			<version>${prometheus.client}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.dropwizard.metrics/metrics-jvm -->
 		<dependency>
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-jvm</artifactId>
-			<version>3.1.2</version>
+			<version>${metrics.version}</version>
 		</dependency>
 
 	</dependencies>

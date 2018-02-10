@@ -23,7 +23,7 @@ public class MonitoringApplication extends Application<MonitoringConfiguration> 
 
 		environment.healthChecks().register("running", new RunningHealthCheck());
 
-		environment.servlets().addServlet("prometheus", new MetricsServlet()).addMapping("/prometheus");
+		environment.servlets().addServlet("metrics", new MetricsServlet()).addMapping("/metrics");
 	}
 
 	@Override
