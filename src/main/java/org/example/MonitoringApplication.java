@@ -10,6 +10,11 @@ import io.prometheus.client.exporter.MetricsServlet;
 import org.example.config.MonitoringConfiguration;
 import org.example.healthcheck.RunningHealthCheck;
 import org.example.resource.GreetingResource;
+import uk.gov.re.gds.metrics.AuthenticationFilter;
+import uk.gov.re.gds.metrics.Configuration;
+
+import javax.servlet.DispatcherType;
+import java.util.EnumSet;
 
 public class MonitoringApplication extends Application<MonitoringConfiguration> {
 
@@ -19,11 +24,18 @@ public class MonitoringApplication extends Application<MonitoringConfiguration> 
 
 	@Override
 	public void run(final MonitoringConfiguration monitoringConfiguration, final Environment environment) throws Exception {
+		final Configuration configuration = Configuration.getInstance();
+
 		environment.jersey().register(new GreetingResource());
 
 		environment.healthChecks().register("running", new RunningHealthCheck());
 
-		environment.servlets().addServlet("metrics", new MetricsServlet()).addMapping("/metrics");
+		environment.servlets().addServlet("metrics", new MetricsServlet())
+				.addMapping(configuration.getPrometheusMetricsPath());
+
+		environment.servlets()
+				.addFilter("LoggerFilter", new AuthenticationFilter())
+				.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, configuration.getPrometheusMetricsPath());
 	}
 
 	@Override
